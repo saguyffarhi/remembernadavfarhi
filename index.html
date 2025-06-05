@@ -37,6 +37,12 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Montserrat:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     /* משתני צבעים ומידות */
@@ -61,7 +67,7 @@
       padding: 0;
       background-color: var(--background);
       color: var(--textColor);
-      font-family: "Montserrat", sans-serif;
+      font-family: "Heebo", "Montserrat", sans-serif;
     }
 
     /* מיכל לתמונת הכיסוי ופרופיל */
@@ -69,6 +75,14 @@
       position: relative;
       width: 100%;
       overflow: hidden;
+    }
+
+    .cover-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+      pointer-events: none;
     }
 
     /* תמונת כיסוי ללא חיתוך: גובה אוטומטי */
@@ -91,6 +105,7 @@
       border-radius: 50%;
       overflow: hidden;
       background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .profile-image img {
@@ -104,6 +119,9 @@
       margin-top: var(--titles-margin-top);
       text-align: center;
       padding: 0 15px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .titles-block h1 {
@@ -127,9 +145,10 @@
     /* רשת הכפתורים: 4 עמודות (2 שורות) תמיד */
     .quick-buttons {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(var(--button-size), 1fr));
       gap: var(--button-gap);
-      margin: 20px 15px;
+      margin: 20px auto;
+      max-width: 600px;
       justify-items: center;
     }
 
@@ -144,12 +163,14 @@
       border-radius: 50%;
       width: var(--button-size);
       height: var(--button-size);
-      transition: opacity 0.2s ease-in-out;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
       text-align: center;
     }
 
     .quick-buttons .button:hover {
       opacity: 0.85;
+      transform: scale(1.05);
     }
 
     .quick-buttons .button .icon {
