@@ -104,7 +104,7 @@
       display: block;
       width: 100%;
       height: auto;
-      object-fit: contain;  /* מוודא היהלום של התמונה לא ייחתך */
+      object-fit: contain;  /* מוודא שהתמונה לא תיחתך */
       object-position: center;
     }
     .cover-wrapper::after {
@@ -192,19 +192,27 @@
       justify-items: center;
     }
     nav.quick-buttons .button {
+      /* איפוס ברירת־מחדל של <button> */
+      box-sizing: border-box;
+      border: none;
+      padding: 0;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       background-color: var(--mainColor);
       color: #fff;
       border-radius: 12px;
+
       width: var(--buttonSize);
       height: var(--buttonSize);
+
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+
       text-align: center;
-      padding: 8px;
       overflow: hidden;
     }
     nav.quick-buttons .button:hover {
@@ -224,15 +232,13 @@
       font-size: 0.75rem;
       line-height: 1.1;
       word-break: break-word;
+      padding: 0 4px; /* רווח קל מהגבולות */
     }
 
     /* -----------------------------------
        התאמות מובייל (Media Queries)
        ----------------------------------- */
     @media (max-width: 768px) {
-      .cover-wrapper img.cover-img {
-        /* גובה אוטומטי – כבר נקבע ב־width:100%; height:auto; */
-      }
       .profile-image {
         width: var(--profileSizeMobile);
         height: var(--profileSizeMobile);
@@ -401,21 +407,20 @@
   </nav>
 
   <!-- ========================
-       MAIN (כאן יתחיל התוכן הראשי — אם נרצה להוסיף עוד חלקים)
+       MAIN (כאן יתחיל התוכן הראשי)
        ======================== -->
   <main id="main-content" class="container">
-    <!-- במקרה הזה אין עדיין תוכן מעבר למה שכבר מופיע ב-header -->
-    <!-- אם בעתיד תרצו להוסיף מדורים נוספים: גלרייה, חדשות, ביוגרפיה מורחבת וכו', ייכנסו כאן -->
+    <!-- תוכן עתידי ייכנס כאן -->
   </main>
 
   <!-- ========================
        FOOTER
        ======================== -->
   <footer>
-    <p>&copy; רס"ר נדב פרחי</p>
+    <p>&copy; רס"ר נדב יששכר פרחי ז"ל</p>
     <p>
       צרו קשר:&nbsp;
-      <a href="mailto:RememberNadavFarhi@gmail.com">RememberNadavFarhi@gmail.com</a>
+      <a href="mailto:Saguyfarhi@gmail.com">Saguyfarhi@gmail.com</a>
     </p>
   </footer>
 
