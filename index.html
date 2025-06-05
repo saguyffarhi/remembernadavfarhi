@@ -21,14 +21,6 @@
   <meta name="twitter:card" content="summary_large_image" />
   <title>רס"ר (מיל') נדב יששכר פרחי ז"ל</title>
 
-  <!-- Bootstrap CSS (אפשר להסיר אם לא משתמשים בקומפוננטות שלו) -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-9ndCyUa6Y7w+x5+9G+9h/nd+oUj/JmX5E37Ktp4xhyxdT9YWbq/a8QAvQ6F3v9QG"
-    crossorigin="anonymous"
-  />
-
   <!-- Font Awesome לאייקונים -->
   <link
     rel="stylesheet"
@@ -45,21 +37,24 @@
   />
 
   <style>
-    /* משתני צבעים ומידות */
+    /* ----------------------------------
+       משתני צבעים, טיפוגרפיה ומידות
+       ---------------------------------- */
     :root {
-      --mainColor: #285610;
-      --textColor: #212529;
-      --background: #ffffff;
+      --mainColor: #556B2F;        /* ירוק זית כהה */
+      --mainColorHover: #6B8E23;   /* רחב מעט עבור הצפה */
+      --textColor: #2c3e50;
+      --subtitleColor: rgba(0, 0, 0, 0.6);
+      --background: #f9f9f9;
 
-      /* גודל תמונת הפרופיל */
-      --profile-size: 150px;
-      /* רווח מעל הכותרות (חצי מהפרופיל פלוס 20px) */
-      --titles-margin-top: calc(var(--profile-size) / 2 + 20px);
+      --profileSize: 160px;         /* גודל תמונת פרופיל בדסקטופ */
+      --profileSizeMobile: 120px;   /* גודל תמונת פרופיל במובייל */
+      --titlesMarginTop: calc(var(--profileSize) / 2 + 20px);
 
-      /* מידות הכפתורים */
-      --button-size: 80px;
-      --button-icon-size: 1.5em;
-      --button-gap: 15px;
+      --buttonSize: 90px;           /* גודל קבוע לכפתור */
+      --buttonIconSize: 1.6em;      /* גודל אייקון */
+      --buttonGap: 20px;
+      --containerMaxWidth: 800px;
     }
 
     body {
@@ -67,88 +62,107 @@
       padding: 0;
       background-color: var(--background);
       color: var(--textColor);
-      font-family: "Heebo", "Montserrat", sans-serif;
+      font-family: 'Heebo', 'Montserrat', sans-serif;
+      line-height: 1.6;
+      direction: rtl;
     }
 
-    /* מיכל לתמונת הכיסוי ופרופיל */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* -------------------------------
+       מיכל לתמונת כיסוי (Cover)
+       ------------------------------- */
     .cover-wrapper {
       position: relative;
       width: 100%;
-      overflow: hidden;
+      /* גובה הכיסוי מוגדר אוטומטית לפי רוחב כך שלא ייחתך */
     }
 
-    .cover-wrapper::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-      pointer-events: none;
-    }
-
-    /* תמונת כיסוי ללא חיתוך: גובה אוטומטי */
+    /* מתג שיסגור את ה־overflow אם נדרש */
     .cover-wrapper img.cover-img {
       display: block;
       width: 100%;
       height: auto;
-      object-fit: cover;
+      object-fit: contain;  /* יראה את התמונה בשלמותה, בלי חיתוך */
+      object-position: center;
     }
 
-    /* תמונת פרופיל חופפת חלקית מעל הכיסוי */
+    /* -----------------------------------
+       תמונת הפרופיל החופפת (Profile Image)
+       ----------------------------------- */
     .profile-image {
       position: absolute;
-      bottom: calc(-1 * var(--profile-size) / 2);
+      bottom: calc(-1 * var(--profileSize) / 2);
       left: 50%;
       transform: translateX(-50%);
-      width: var(--profile-size);
-      height: var(--profile-size);
+      width: var(--profileSize);
+      height: var(--profileSize);
       border: 4px solid #fff;
       border-radius: 50%;
       overflow: hidden;
       background-color: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .profile-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
     }
 
-    /* בלוק הכותרות ו"תיאור אודות" */
+    /* -----------------------------------
+       קונטיינר מרכזי (מרוכז) לתוכן
+       ----------------------------------- */
+    .container {
+      max-width: var(--containerMaxWidth);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* -----------------------------------
+       בלוק כותרות ותיאור אודות
+       ----------------------------------- */
     .titles-block {
-      margin-top: var(--titles-margin-top);
+      margin-top: var(--titlesMarginTop);
       text-align: center;
-      padding: 0 15px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #e0e0e0;
     }
 
     .titles-block h1 {
-      font-size: 2.1rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 8px;
     }
 
     .titles-block h2 {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      color: rgba(0, 0, 0, 0.6);
-      margin-bottom: 1rem;
+      color: var(--subtitleColor);
+      margin-bottom: 16px;
     }
 
     .titles-block p {
-      font-size: 1.1rem;
+      font-size: 1rem;
+      color: #444;
       white-space: pre-wrap;
+      line-height: 1.5;
+      max-width: 650px;
+      margin: 0 auto;
     }
 
-    /* רשת הכפתורים: 4 עמודות (2 שורות) תמיד */
+    /* -----------------------------------
+       רשת הכפתורים – 4 עמודות בדסקטופ
+       ----------------------------------- */
     .quick-buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(var(--button-size), 1fr));
-      gap: var(--button-gap);
-      margin: 20px auto;
-      max-width: 600px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--buttonGap);
+      margin: 40px auto;
       justify-items: center;
     }
 
@@ -157,43 +171,89 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
       background-color: var(--mainColor);
       color: #fff;
-      border-radius: 50%;
-      width: var(--button-size);
-      height: var(--button-size);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+      border-radius: 12px;
+      width: var(--buttonSize);
+      height: var(--buttonSize);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
       text-align: center;
+      padding: 8px;
+      overflow: hidden;
     }
 
     .quick-buttons .button:hover {
-      opacity: 0.85;
+      background-color: var(--mainColorHover);
       transform: scale(1.05);
     }
 
     .quick-buttons .button .icon {
-      font-size: var(--button-icon-size);
+      font-size: var(--buttonIconSize);
+      line-height: 1;
     }
 
+    /* הפחתנו מעט את גודל הגופן כדי שכותרות ב-2 שורות יכנסו ללא גלילה */
     .quick-buttons .button .title {
-      margin-top: 8px;
-      font-size: 0.9rem;
+      margin-top: 4px;
+      font-size: 0.75rem;
       line-height: 1.1;
       word-break: break-word;
     }
 
-    /* מעט ריווח בתחתית למנוע גלישה על תוכן סטטי */
-    body {
-      padding-bottom: 20px;
+    /* -----------------------------------
+       Footer מינימליסטי
+       ----------------------------------- */
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 16px 0;
+      border-top: 1px solid #e0e0e0;
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--mainColor);
+      text-decoration: underline;
+    }
+
+    /* ================================================
+       Media Queries – התאמות למובייל (מסכים צרים)
+       ================================================ */
+    @media (max-width: 768px) {
+      /* תמונת הכיסוי תתכווץ בהתאם לרוחב (גובה אוטומטי) */
+      .cover-wrapper img.cover-img {
+        /* אין צורך בשינוי מיוחד, מכיוון ש־height:auto */
+      }
+
+      /* נקטין את תמונת הפרופיל ונכנס ל־bottom חדש */
+      .profile-image {
+        width: var(--profileSizeMobile);
+        height: var(--profileSizeMobile);
+        bottom: calc(-1 * var(--profileSizeMobile) / 2);
+      }
+
+      /* נפחית את המרווח לפני הכותרת */
+      .titles-block {
+        margin-top: calc(var(--profileSizeMobile) / 2 + 16px);
+      }
+
+      /* נשנה ל־2 עמודות בכפתורים כשהמסך צר */
+      .quick-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- מיכל תמונת כיסוי + פרופיל -->
+  <!-- ========================
+       מיכל תמונת כיסוי + פרופיל
+       ======================== -->
   <div class="cover-wrapper">
+    <!-- משתמשים ב־<img> כדי למנוע חיתוך -->
     <img
       src="https://files.cdn-files-a.com/uploads/9635120/2000_66cd560d501e2_filter_66cd9954d39da.jpg"
       alt="תמונת כיסוי"
@@ -207,100 +267,117 @@
     </div>
   </div>
 
-  <!-- כותרות ותיאור -->
-  <div class="titles-block">
-    <h1>רס"ר (מיל') נדב יששכר פרחי ז"ל</h1>
-    <h2>Master Sergeant (res.) Nadav Issachar Farhi z&quot;l</h2>
+  <!-- ========================
+       קונטיינר מרכזי
+       ======================== -->
+  <main class="container">
+    <!-- ========================
+         כותרות ותיאור
+         ======================== -->
+    <section class="titles-block">
+      <h1>רס"ר (מיל') נדב יששכר פרחי ז"ל</h1>
+      <h2>Master Sergeant (res.) Nadav Issachar Farhi z&quot;l</h2>
+      <p>
+        נפל ביום י"א בטבת התשפ"ד (23 בדצמבר 2023) רס"ר (מיל') נדב יששכר פרחי,
+        מהרצליה, חובש קרבי בגדוד 7810, חטיבת 'יפתח' (11), נפל בקרב במרכז רצועת עזה,
+        בן 30 בנופלו
+      </p>
+    </section>
+
+    <!-- ========================
+         רשת כפתורים מקצועית
+         ======================== -->
+    <section class="quick-buttons">
+      <!-- 1. לאתר ההנצחה -->
+      <a
+        href="https://66cd57d0380ee.site123.me"
+        target="_blank"
+        class="button"
+      >
+        <div class="icon"><i class="fas fa-globe"></i></div>
+        <div class="title">לאתר ההנצחה</div>
+      </a>
+
+      <!-- 2. English -->
+      <a
+        href="https://66cd57d0380ee.site123.me/english"
+        target="_blank"
+        class="button"
+      >
+        <div class="icon"><i class="fas fa-language"></i></div>
+        <div class="title">English</div>
+      </a>
+
+      <!-- 3. עברית -->
+      <a
+        href="https://66cd57d0380ee.site123.me/%D7%A2%D7%91%D7%A8%D7%99%D7%AA"
+        target="_blank"
+        class="button"
+      >
+        <div class="icon"><i class="fas fa-language"></i></div>
+        <div class="title">עברית</div>
+      </a>
+
+      <!-- 4. עמוד החללה באתר צה״ל -->
+      <a
+        href="https://www.idf.il/%D7%A0%D7%95%D7%A4%D7%9C%D7%99%D7%9D/%D7%97%D7%9C%D7%9C%D7%99-%D7%94%D7%9E%D7%9C%D7%97%D7%9E%D7%94/%D7%A0%D7%93%D7%91-%D7%99%D7%A9%D7%A9%D7%9B%D7%A8-%D7%A4%D7%A8%D7%97%D7%99/"
+        target="_blank"
+        class="button"
+      >
+        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="title">עמוד החלל<br>באתר צה&quot;ל</div>
+      </a>
+
+      <!-- 5. Wine & Friends -->
+      <a
+        href="https://wineandfriends.co.il/?s=%D7%A0%D7%93%D7%91+%D7%A4%D7%A8%D7%97%D7%99"
+        target="_blank"
+        class="button"
+      >
+        <div class="icon"><i class="fas fa-wine-glass"></i></div>
+        <div class="title">Wine &amp; Friends</div>
+      </a>
+
+      <!-- 6. קהילה זוכרת -->
+      <a
+        href="https://www.coing.co/Remember_Nadav_Farhi"
+        target="_blank"
+        class="button"
+      >
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <div class="title">קהילה זוכרת</div>
+      </a>
+
+      <!-- 7. שתף -->
+      <button id="shareBtn" class="button" type="button">
+        <div class="icon"><i class="fas fa-share-alt"></i></div>
+        <div class="title">שתף</div>
+      </button>
+
+      <!-- 8. צור קשר עם המשפחה -->
+      <a href="mailto:RememberNadavFarhi@gmail.com" class="button">
+        <div class="icon"><i class="fas fa-envelope"></i></div>
+        <div class="title">צור קשר עם<br>המשפחה</div>
+      </a>
+    </section>
+  </main>
+
+  <!-- ========================
+       Footer
+       ======================== -->
+  <footer>
+    <p>&copy; 2023 זיכרון נדב פרחי. כל הזכויות שמורות.</p>
     <p>
-      נפל ביום י"א בטבת התשפ"ד (23 בדצמבר 2023) רס"ר (מיל') נדב יששכר פרחי,
-      מהרצליה, חובש קרבי בגדוד 7810, חטיבת 'יפתח' (11), נפל בקרב במרכז רצועת עזה,
-      בן 30 בנופלו
+      צרו קשר:&nbsp;
+      <a href="mailto:RememberNadavFarhi@gmail.com">
+        RememberNadavFarhi@gmail.com
+      </a>
     </p>
-  </div>
+  </footer>
 
-  <!-- רשת כפתורים בשתי שורות -->
-  <div class="quick-buttons">
-    <!-- 1. לאתר ההנצחה -->
-    <a
-      href="https://66cd57d0380ee.site123.me"
-      target="_blank"
-      class="button"
-    >
-      <div class="icon"><i class="fas fa-globe"></i></div>
-      <div class="title">לאתר ההנצחה</div>
-    </a>
-
-    <!-- 2. English -->
-    <a
-      href="https://66cd57d0380ee.site123.me/english"
-      target="_blank"
-      class="button"
-    >
-      <div class="icon"><i class="fas fa-language"></i></div>
-      <div class="title">English</div>
-    </a>
-
-    <!-- 3. ערבית -->
-    <a
-      href="https://66cd57d0380ee.site123.me/%D7%A2%D7%91%D7%A8%D7%99%D7%AA"
-      target="_blank"
-      class="button"
-    >
-      <div class="icon"><i class="fas fa-language"></i></div>
-      <div class="title">עברית</div>
-    </a>
-
-    <!-- 4. עמוד החללה באתר צה״ל -->
-    <a
-      href="https://www.idf.il/%D7%A0%D7%95%D7%A4%D7%9C%D7%99%D7%9D/%D7%97%D7%9C%D7%9C%D7%99-%D7%94%D7%9E%D7%9C%D7%97%D7%9E%D7%94/%D7%A0%D7%93%D7%91-%D7%99%D7%A9%D7%A9%D7%9B%D7%A8-%D7%A4%D7%A8%D7%97%D7%99/"
-      target="_blank"
-      class="button"
-    >
-      <div class="icon"><i class="fas fa-shield-alt"></i></div>
-      <div class="title">עמוד החלל ב<br>אתר צה&quot;ל</div>
-    </a>
-
-    <!-- 5. Wine & Friends -->
-    <a
-      href="https://wineandfriends.co.il/?s=%D7%A0%D7%93%D7%91+%D7%A4%D7%A8%D7%97%D7%99"
-      target="_blank"
-      class="button"
-    >
-      <div class="icon"><i class="fas fa-wine-glass"></i></div>
-      <div class="title">Wine &amp; Friends</div>
-    </a>
-
-    <!-- 6. קהילה זוכרת -->
-    <a
-      href="https://www.coing.co/Remember_Nadav_Farhi"
-      target="_blank"
-      class="button"
-    >
-      <div class="icon"><i class="fas fa-users"></i></div>
-      <div class="title">קהילה זוכרת</div>
-    </a>
-
-    <!-- 7. Share -->
-    <button id="shareBtn" class="button" type="button">
-      <div class="icon"><i class="fas fa-share-alt"></i></div>
-      <div class="title">שתף</div>
-    </button>
-
-    <!-- 8. Contact Family -->
-    <a href="mailto:RememberNadavFarhi@gmail.com" class="button">
-      <div class="icon"><i class="fas fa-envelope"></i></div>
-      <div class="title">צור קשר עם<br>המשפחה</div>
-    </a>
-  </div>
-
-  <!-- Bootstrap JS bundle (אופציונלי) -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoXln4gX8vgw1MCVaspF036JjBzn9M+ebAyixXMjgfl6JpG"
-    crossorigin="anonymous"
-  ></script>
-
-  <!-- JavaScript לשיתוף (Share) -->
+  <!-- ========================
+       JavaScript לשיתוף (Share)
+       ======================== -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var shareBtn = document.getElementById("shareBtn");
@@ -317,7 +394,7 @@
               console.warn("משתמש ביטל את השיתוף או אירעה שגיאה:", err);
             });
         } else {
-          // חלופות: העתקת ה-URL ללוח
+          // העתקת ה-URL ללוח
           var tempInput = document.createElement("input");
           tempInput.style.position = "absolute";
           tempInput.style.left = "-1000px";
